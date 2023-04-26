@@ -5,3 +5,5 @@ requests
 django-cors-headers
 psycopg2-binary
 pillow
+gunicorn
+dj-database-url
