@@ -97,20 +97,22 @@ WSGI_APPLICATION = 'todo_notes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'todo-notes',
-#         'USER': 'postgres',
-#         'PASSWORD': 'pgadmin',
-#         'HOST': 'postgres.render.com',
-#         'PORT': 5432,
-#     }
-# }
-
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'todo-notes',
+        'USER': 'postgres',
+        'PASSWORD': 'pgadmin',
+        'HOST': 'localhost',
+        'PORT': 5432,
+    }
 }
+
+# DATABASES['default']['OPTIONS'] = {'sslmode': 'disable'}
+
+# DATABASES = {
+#     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+# }
 
 
 # Password validation
