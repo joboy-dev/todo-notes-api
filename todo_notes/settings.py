@@ -99,14 +99,12 @@ WSGI_APPLICATION = 'todo_notes.wsgi.application'
 
 # DATABASES = {
 #     'default': {
-#         # 'ENGINE': 'django.db.backends.sqlite3',
-#         # 'NAME': BASE_DIR / 'db.sqlite3',
-
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'todo-notes',
 #         'USER': 'postgres',
 #         'PASSWORD': 'pgadmin',
-#         'HOST': 'localhost',
+#         'HOST': 'postgres.render.com',
+#         'PORT': 5432,
 #     }
 # }
 
