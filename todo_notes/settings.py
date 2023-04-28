@@ -99,14 +99,29 @@ WSGI_APPLICATION = 'todo_notes.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'todo-notes',
-        'USER': 'postgres',
-        'PASSWORD': 'pgadmin',
-        'HOST': 'localhost',
-        'PORT': 5432,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'todo-notes',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'pgadmin',
+    #     'HOST': 'localhost',
+    #     'PORT': 5432,
+    # }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'todoey',
+#         'USER': 'todoey_user',
+#         'PASSWORD': '0ThHhiep0kZnCpHmfdksgMjrrB4EgXzu',
+#         'HOST': ' 192.168.43.235',
+#         'PORT': 5432,
+#     }
+# }
 
 # DATABASES['default']['OPTIONS'] = {'sslmode': 'disable'}
 
