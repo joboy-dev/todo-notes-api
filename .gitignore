@@ -1,2 +1,3 @@
 todo_notes_venv
 __pycache__
+db.sqlite3
