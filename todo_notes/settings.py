@@ -12,11 +12,14 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
 import dj_database_url
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,9 +31,13 @@ SECRET_KEY = 'django-insecure-pzs16%y6nf_a!k*c%4e7@))k93ih$0f5n#t1yum@!bwqrtog(l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
-CORS_ORIGIN_ALLOW_ALL = True
+ALLOWED_HOSTS = []
 
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:    
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
@@ -97,37 +104,49 @@ WSGI_APPLICATION = 'todo_notes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'todo-notes',
-    #     'USER': 'postgres',
-    #     'PASSWORD': 'pgadmin',
-    #     'HOST': 'localhost',
-    #     'PORT': 5432,
-    # }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'todoeydb',
+#         'USER': 'joboydev',
+#         'PASSWORD': '0ThHhiep0kZnCpHmfdksgMjrrB4EgXzu',
+#         # 'HOST': '192.168.43.2',
+#         'HOST': 'todoey-ji21.onrender.com',
+#         'PORT': 5432,
+#     }
+# }
+#     # 'default': {
+#     #     'ENGINE': 'django.db.backends.postgresql',
+#     #     'NAME': 'todo-notes',
+#     #     'USER': 'postgres',
+#     #     'PASSWORD': 'pgadmin',
+#     #     'HOST': 'localhost',
+#     #     'PORT': 5432,
+#     # }
+# }
+
+# 
 
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'todoey',
-#         'USER': 'todoey_user',
-#         'PASSWORD': '0ThHhiep0kZnCpHmfdksgMjrrB4EgXzu',
-#         'HOST': ' 192.168.43.235',
-#         'PORT': 5432,
+#         'NAME': os.getenv("DB_NAME"),
+#         'PORT': os.getenv("DB_PORT"),
+#         'USER': os.getenv("DB_USER"),
+#         'PASSWORD': os.getenv("DB_PASSWORD"),
+#         'HOST': os.getenv("DB_HOST")
 #     }
 # }
 
 # DATABASES['default']['OPTIONS'] = {'sslmode': 'disable'}
 
-# DATABASES = {
-#     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-# }
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get('DATABASE_HOST'))
+}
 
 
 # Password validation
