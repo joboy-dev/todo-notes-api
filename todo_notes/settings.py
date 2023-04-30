@@ -19,6 +19,8 @@ import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# load dotenv
 load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 
@@ -26,7 +28,12 @@ load_dotenv(os.path.join(BASE_DIR, ".env"))
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-pzs16%y6nf_a!k*c%4e7@))k93ih$0f5n#t1yum@!bwqrtog(l'
+
+# RUN THIS IN PYTHON SHELL
+# from django.core.management.utils import get_random_secret_key 
+# SECRET_KEY = get_random_secret_key()
+
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
