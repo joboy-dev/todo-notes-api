@@ -18,7 +18,7 @@ class RegistrationView(generics.CreateAPIView):
     '''View to register users'''
 
     serializer_class = serializers.CreateUserSerializer
-    parser_classes = [MultiPartParser]
+    # parser_classes = [MultiPartParser]
     queryset = User.objects.all()
     
     def perform_create(self, serializer):
@@ -63,6 +63,8 @@ class LogoutView(generics.GenericAPIView):
 
 class UpdateDetailsView(generics.RetrieveUpdateAPIView):
 
+    '''View to update user details'''
+
     permission_classes = [IsAuthenticated]
     serializer_class = serializers.UpdateDetailsSerializer
 
@@ -77,7 +79,10 @@ class UpdateDetailsView(generics.RetrieveUpdateAPIView):
 
 class UploadProfilePictureView(generics.UpdateAPIView):
 
+    '''View to upload profile picture'''
+
     permission_classes = [IsAuthenticated]
+    parser_classes = [MultiPartParser]
     serializer_class = serializers.UploadProfilePictureSerializer
 
     def get_queryset(self):
