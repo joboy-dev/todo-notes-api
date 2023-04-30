@@ -7,5 +7,4 @@ psycopg2-binary
 pillow
 gunicorn
 dj-database-url
-# sshuttle
 python-dotenv
