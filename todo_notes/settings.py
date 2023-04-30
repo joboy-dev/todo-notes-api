@@ -30,12 +30,12 @@ load_dotenv(os.path.join(BASE_DIR, ".env"))
 # SECURITY WARNING: keep the secret key used in production secret!
 
 # RUN THIS IN PYTHON SHELL
-# from django.core.management.utils import get_random_secret_key 
-# SECRET_KEY = get_random_secret_key()
+from django.core.management.utils import get_random_secret_key 
+SECRET_KEY = get_random_secret_key()
 
-SEC_KEY = os.environ.get('SECRET_KEY')
+# SEC_KEY = os.getenv('SECRET_KEY')
 
-SECRET_KEY = SEC_KEY
+# SECRET_KEY = SEC_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
