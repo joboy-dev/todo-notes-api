@@ -14,7 +14,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'profile_pic', 'password', 'password2']
+        fields = ['first_name', 'last_name', 'email', 'password', 'password2']
         extra_kwargs = {
             'password':{'write_only':True}
         }
@@ -36,13 +36,13 @@ class CreateUserSerializer(serializers.ModelSerializer):
         last_name = validated_data.get('last_name')
         email = validated_data.get('email')
         password = validated_data.get('password')
-        profile_pic = validated_data.get('profile_pic')
+        # profile_pic = validated_data.get('profile_pic')
 
         user = User(
             first_name=first_name,
             last_name=last_name,
             email=email,
-            profile_pic=profile_pic,
+            # profile_pic=profile_pic,
         )
 
         user.set_password(password)
@@ -87,7 +87,26 @@ class UpdateDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'profile_pic']
+        fields = ['first_name', 'last_name', 'email']
+
+    def update(self, instance, validated_data):
+        for key, value in validated_data.items():
+            setattr(instance, key, value)
+
+        # save instance
+        instance.save()
+
+        # return instance
+        return instance
+
+
+class UploadProfilePictureSerializer(serializers.ModelSerializer):
+
+    '''Serializer to upload profile picture'''
+
+    class Meta:
+        model = User
+        fields = ['profile_pic']
 
     def update(self, instance, validated_data):
         for key, value in validated_data.items():

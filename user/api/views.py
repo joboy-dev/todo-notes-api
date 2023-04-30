@@ -73,3 +73,17 @@ class UpdateDetailsView(generics.RetrieveUpdateAPIView):
     
     def get_object(self):
         return self.request.user
+    
+
+class UploadProfilePictureView(generics.UpdateAPIView):
+
+    permission_classes = [IsAuthenticated]
+    serializer_class = serializers.UploadProfilePictureSerializer
+
+    def get_queryset(self):
+        current_user = self.request.user
+
+        return User.objects.filter(pk=current_user.pk)
+
+    def get_object(self):
+        return self.request.user
