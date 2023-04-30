@@ -2,7 +2,9 @@ from rest_framework import serializers
 from notes.models import Note
 
 class NoteSerializer(serializers.ModelSerializer):
+
     '''Create note serializer'''
+
     author = serializers.StringRelatedField(read_only=True)
 
     class Meta:
@@ -11,6 +13,7 @@ class NoteSerializer(serializers.ModelSerializer):
         read_only_fields = ['created_at', 'updated_at']
 
     def validate(self, data):
+
         '''Validate user input'''
 
         if data['title'] == data['content']:
@@ -21,6 +24,7 @@ class NoteSerializer(serializers.ModelSerializer):
             return data
     
     def create(self, validated_data):
+        
         '''Create a new note'''
 
         author = self.context['request'].user
@@ -38,6 +42,7 @@ class NoteSerializer(serializers.ModelSerializer):
     
 
 class UpdateNoteSerializer(serializers.ModelSerializer):
+    
     '''Update note serializer'''
 
     author = serializers.StringRelatedField(read_only=True)
@@ -48,6 +53,7 @@ class UpdateNoteSerializer(serializers.ModelSerializer):
         read_only_fields = ['created_at', 'updated_at']
 
     def validate(self, data):
+        
         '''Validate user input'''
 
         if data['title'] == data['content']:

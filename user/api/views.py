@@ -77,7 +77,7 @@ class UpdateDetailsView(generics.RetrieveUpdateAPIView):
         return self.request.user
     
 
-class UploadProfilePictureView(generics.UpdateAPIView):
+class UploadProfilePictureView(generics.RetrieveUpdateAPIView):
 
     '''View to upload profile picture'''
 

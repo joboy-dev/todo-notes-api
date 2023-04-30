@@ -11,6 +11,7 @@ from .permissions import IsTodoOwner
 
 # view to get user to do list. no need for getting primary key value
 class UserTodoListGV(generics.ListAPIView):
+
     '''View to access todo items of current logged in user'''
 
     serializer_class = TodoSerializer
@@ -44,6 +45,7 @@ class UserTodoListGV(generics.ListAPIView):
     
     
 class TodoCreateView(generics.CreateAPIView):
+
     '''Todo creation view'''
 
     serializer_class = TodoSerializer
@@ -59,13 +61,16 @@ class TodoCreateView(generics.CreateAPIView):
 
 
 class TodoItemView(generics.RetrieveUpdateDestroyAPIView):
+
     '''View to get, update and delete todo item'''
 
     serializer_class = UpdateTodoSerializer
     permission_classes = [IsAuthenticated, IsTodoOwner]
 
     def get(self, request, *args, **kwargs):
+
         '''get function to check if a todo item exists or not'''
+        
         pk = self.kwargs['pk']
 
         try:

@@ -11,6 +11,7 @@ from .permissions import IsNoteAuthor
 
 # Create your views here.
 class UserNoteListView(generics.ListAPIView):
+
     '''View to access notes of current logged in user'''
 
     serializer_class = NoteSerializer
@@ -39,6 +40,7 @@ class UserNoteListView(generics.ListAPIView):
     
 
 class NoteCreateView(generics.CreateAPIView):
+
     '''Note creation view'''
 
     serializer_class = NoteSerializer
@@ -54,13 +56,16 @@ class NoteCreateView(generics.CreateAPIView):
 
 
 class NoteDetailsView(generics.RetrieveUpdateDestroyAPIView):
+
     '''View to get, update and delete note item'''
     
     serializer_class = UpdateNoteSerializer
     permission_classes = [IsAuthenticatedOrReadOnly, IsNoteAuthor]
 
     def get(self, request, *args, **kwargs):
+
         '''get function to check if a note exists or not'''
+        
         pk = self.kwargs['pk']
 
         try:
