@@ -33,7 +33,7 @@ load_dotenv(os.path.join(BASE_DIR, ".env"))
 # from django.core.management.utils import get_random_secret_key 
 # SECRET_KEY = get_random_secret_key()
 
-SEC_KEY = os.getenv('SECRET_KEY')
+SEC_KEY = os.environ.get('SECRET_KEY')
 
 SECRET_KEY = SEC_KEY
 
