@@ -104,32 +104,7 @@ WSGI_APPLICATION = 'todo_notes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'todoeydb',
-#         'USER': 'joboydev',
-#         'PASSWORD': '0ThHhiep0kZnCpHmfdksgMjrrB4EgXzu',
-#         # 'HOST': '192.168.43.2',
-#         'HOST': 'todoey-ji21.onrender.com',
-#         'PORT': 5432,
-#     }
-# }
-#     # 'default': {
-#     #     'ENGINE': 'django.db.backends.postgresql',
-#     #     'NAME': 'todo-notes',
-#     #     'USER': 'postgres',
-#     #     'PASSWORD': 'pgadmin',
-#     #     'HOST': 'localhost',
-#     #     'PORT': 5432,
-#     # }
-# }
-
-# 
+# USE .env File
 
 # DATABASES = {
 #     'default': {
@@ -141,8 +116,6 @@ WSGI_APPLICATION = 'todo_notes.wsgi.application'
 #         'HOST': os.getenv("DB_HOST")
 #     }
 # }
-
-# DATABASES['default']['OPTIONS'] = {'sslmode': 'disable'}
 
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get('DATABASE_HOST'))
