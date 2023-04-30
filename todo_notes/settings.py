@@ -113,20 +113,20 @@ WSGI_APPLICATION = 'todo_notes.wsgi.application'
 
 # USE .env File
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv("DB_NAME"),
-#         'PORT': os.getenv("DB_PORT"),
-#         'USER': os.getenv("DB_USER"),
-#         'PASSWORD': os.getenv("DB_PASSWORD"),
-#         'HOST': os.getenv("DB_HOST")
-#     }
-# }
-
 DATABASES = {
-    'default': dj_database_url.parse(os.getenv('DATABASE_HOST'))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv("DB_NAME"),
+        'PORT': os.getenv("DB_PORT"),
+        'USER': os.getenv("DB_USER"),
+        'PASSWORD': os.getenv("DB_PASSWORD"),
+        'HOST': os.getenv("DB_HOST")
+    }
 }
+
+# DATABASES = {
+#     'default': dj_database_url.parse(os.getenv('DATABASE_HOST'))
+# }
 
 
 # Password validation
