@@ -7,6 +7,7 @@ from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.parsers import MultiPartParser
+from rest_framework import status
 
 from . import serializers
 
@@ -41,7 +42,7 @@ class LoginView(generics.GenericAPIView):
         if serializer.is_valid():
             return Response(serializer.validated_data)
         else:
-            return Response(serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class LogoutView(generics.GenericAPIView):
