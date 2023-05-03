@@ -13,8 +13,8 @@ class TodoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def validate(self, data):
-        if data['name'] == data['content']:
-            raise serializers.ValidationError({'error': 'Name and Content cannot be the same'})
+        # if data['name'] == data['content']:
+        #     raise serializers.ValidationError({'error': 'Name and Content cannot be the same'})
         if len(data['name']) >= 30:
             raise serializers.ValidationError({'error':'Name is too long'})
         else:
@@ -25,12 +25,12 @@ class TodoSerializer(serializers.ModelSerializer):
         owner = self.context['request'].user
 
         name  = validated_data.get('name')
-        content  = validated_data.get('content')
+        # content  = validated_data.get('content')
         due_date  = validated_data.get('due_date')
 
         todo = Todo(
             name=name,
-            content=content,
+            # content=content,
             due_date=due_date,
             is_completed=False,
             owner=owner
@@ -50,8 +50,8 @@ class UpdateTodoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def validate(self, data):
-        if data['name'] == data['content']:
-            raise serializers.ValidationError({'error': 'Name and Content cannot be the same'})
+        # if data['name'] == data['content']:
+        #     raise serializers.ValidationError({'error': 'Name and Content cannot be the same'})
         if len(data['name']) >= 30:
             raise serializers.ValidationError({'error':'Name is too long'})
         else:
