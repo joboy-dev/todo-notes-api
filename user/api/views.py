@@ -93,3 +93,23 @@ class UploadProfilePictureView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         return self.request.user
+
+
+class ChangePasswordView(generics.RetrieveUpdateAPIView):
+    '''
+        View to change user password
+    '''
+
+    serializer_class = serializers.ChangePasswordSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        current_user = self.request.user
+        return User.objects.filter(pk=current_user.pk)
+
+    def get_object(self):
+        return self.request.user
+    
+    def update(self, request, *args, **kwargs):
+        super().update(request, *args, **kwargs)
+        return Response({'message': 'Password change successful'})
