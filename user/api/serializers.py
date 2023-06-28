@@ -89,7 +89,8 @@ class UpdateDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email']
+        fields = ['id', 'first_name', 'last_name', 'email']
+        read_only_fields = ['id']
 
     def update(self, instance, validated_data):
         for key, value in validated_data.items():
