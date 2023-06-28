@@ -14,11 +14,11 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name', 'email', 'password', 'password2']
+        fields = ['id', 'first_name', 'last_name', 'email', 'password', 'password2', 'profile_pic']
         extra_kwargs = {
             'password':{'write_only':True}
         }
-        read_only_fields = ['id']
+        read_only_fields = ['id', 'profile_pic']
 
     def validate(self, data):
         if data['password'] != data['password2']:
