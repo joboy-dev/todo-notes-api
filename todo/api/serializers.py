@@ -11,6 +11,7 @@ class TodoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Todo
         fields = '__all__'
+        read_only_fields = ['id']
 
     def validate(self, data):
         # if data['name'] == data['content']:
@@ -48,6 +49,7 @@ class UpdateTodoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Todo
         fields = '__all__'
+        read_only_fields = ['id']
 
     def validate(self, data):
         # if data['name'] == data['content']:

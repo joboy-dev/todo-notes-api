@@ -14,10 +14,11 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'password', 'password2']
+        fields = ['id', 'first_name', 'last_name', 'email', 'password', 'password2']
         extra_kwargs = {
             'password':{'write_only':True}
         }
+        read_only_fields = ['id']
 
     def validate(self, data):
         if data['password'] != data['password2']:
@@ -77,6 +78,7 @@ class LoginSerializer(serializers.Serializer):
 
         data['response'] = f'Welcome {email}'
         data['token'] = token[0].key
+        data['id'] = user.pk
 
         return data
 
