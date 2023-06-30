@@ -109,7 +109,8 @@ class UploadProfilePictureSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['profile_pic']
+        fields = ['id', 'first_name', 'last_name', 'email', 'profile_pic']
+        read_only_fields = ['id', 'first_name', 'last_name', 'email']
 
     def update(self, instance, validated_data):
         for key, value in validated_data.items():
