@@ -11,6 +11,9 @@ class Todo(models.Model):
     is_completed = models.BooleanField(default=False)
     due_date = models.DateField(default=datetime.date.today)
     owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
-
+    
+    class Meta:
+        ordering = ['-due_date']
+        
     def __str__(self):
         return f'{self.name} -- {self.due_date}'

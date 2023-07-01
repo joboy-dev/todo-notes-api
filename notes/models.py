@@ -11,5 +11,8 @@ class Note(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
 
+    class Meta:
+        ordering = ['-created_at']
+        
     def __str__(self):
         return f'{self.title} -- {self.author}'
