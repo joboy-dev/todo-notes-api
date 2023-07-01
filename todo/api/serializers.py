@@ -11,7 +11,7 @@ class TodoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Todo
         fields = '__all__'
-        read_only_fields = ['id']
+        read_only_fields = ['id', 'is_completed']
 
     def validate(self, data):
         # if data['name'] == data['content']:
