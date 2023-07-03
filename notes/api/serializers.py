@@ -5,7 +5,7 @@ class NoteSerializer(serializers.ModelSerializer):
 
     '''Create note serializer'''
 
-    # author = serializers.StringRelatedField(read_only=True)
+    author = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = Note
@@ -45,7 +45,7 @@ class UpdateNoteSerializer(serializers.ModelSerializer):
     
     '''Update note serializer'''
 
-    # author = serializers.StringRelatedField(read_only=True)
+    author = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = Note

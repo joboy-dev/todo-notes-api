@@ -6,7 +6,7 @@ from todo.models import Todo
 class TodoSerializer(serializers.ModelSerializer):
     '''Todo serializer for creating a new todo item'''
 
-    # owner = serializers.StringRelatedField()
+    owner = serializers.StringRelatedField()
 
     class Meta:
         model = Todo
@@ -44,7 +44,7 @@ class TodoSerializer(serializers.ModelSerializer):
 class UpdateTodoSerializer(serializers.ModelSerializer):
     '''Serializer to update todo item'''
 
-    # owner = serializers.StringRelatedField(read_only=True)
+    owner = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = Todo
