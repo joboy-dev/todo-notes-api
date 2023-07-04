@@ -3,7 +3,7 @@ from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework import status
-from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import NotFound
 
 from .serializers import NoteSerializer, UpdateNoteSerializer
 from notes.models import Note
@@ -80,3 +80,12 @@ class NoteDetailsView(generics.RetrieveUpdateDestroyAPIView):
         note = Note.objects.get(pk=pk)
         self.check_object_permissions(self.request, note)
         return note
+    
+    def delete(self, request, *args, **kwargs):
+        try:
+            pk = self.kwargs['pk']
+            note = Note.objects.get(pk=pk)
+            super().delete(request, *args, **kwargs)
+            return Response({'message': f'Note {note.title} deleted.'})
+        except Note.DoesNotExist:
+            raise NotFound('Note does not exist')

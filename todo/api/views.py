@@ -3,6 +3,7 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.exceptions import NotFound
 
 from todo.models import Todo
 from .serializers import TodoSerializer, UpdateTodoSerializer
@@ -85,3 +86,12 @@ class TodoItemView(generics.RetrieveUpdateDestroyAPIView):
         todo = Todo.objects.get(pk=pk)
         self.check_object_permissions(self.request, todo)
         return todo
+
+    def delete(self, request, *args, **kwargs):
+        try:
+            pk = self.kwargs['pk']
+            todo = Todo.objects.get(pk=pk)
+            super().delete(request, *args, **kwargs)
+            return Response({'message': f'Todo {todo.name} deleted.'})
+        except Todo.DoesNotExist:
+            raise NotFound('Todo does not exist')
