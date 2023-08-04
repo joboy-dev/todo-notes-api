@@ -1,4 +1,4 @@
-todo_notes_venv
+venv
 __pycache__
 db.sqlite3
 .env
